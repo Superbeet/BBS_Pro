@@ -1,0 +1,8 @@
+.center-container-hx,.footer{
+	box-shadow: 2px 0 5px rgba(214, 214, 215, 0.9), -2px 0 5px
+	rgba(214, 214, 215, 0.9);
+}
+
+.container-hx{
+	width:1000px; margin:0 auto ;z-index: 10;height: 100%; text-align: left;
+}
