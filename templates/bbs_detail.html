@@ -7,7 +7,7 @@
 	<h3>{{bbs_obj.title}} </h3>
 
 	<br>
-	{{bbs_obj.content}}
+	{{bbs_obj.content|safe}}
 </div>
 
 <hr>
@@ -20,12 +20,18 @@
 	</div>
 	<br>
 
-    <form action="/sub_comment/" method="POST">
-    	<!-- {% csrf_token %} -->
- 		<textarea cols=80 rows=3 name='comment_content'></textarea>
-    	<input type="hidden" name="bbs_id" value="{{bbs_obj.id}}" />
-    	<input type="submit" value="Add comment" id="id_submit" />
-    </form>
+
+
+	{% if user.is_authenticated %}
+	    <form action="/sub_comment/" method="POST">
+	    	<!-- {% csrf_token %} -->
+	 		<textarea cols=80 rows=3 name='comment_content'></textarea>
+	    	<input type="hidden" name="bbs_id" value="{{bbs_obj.id}}" />
+	    	<input type="submit" value="Add comment" id="id_submit" />
+	    </form>
+	{%else%}
+		<p>Please <a href='/login/'>Login</a></p>
+	{%endif%}
 
 	<!-- render_comment_list default order is reversed -->
 	{% get_comment_list for bbs_obj as comment_list %}

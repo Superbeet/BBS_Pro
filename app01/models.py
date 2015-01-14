@@ -8,10 +8,11 @@ class BBS(models.Model):
     summary = models.CharField(max_length=256, blank = True)
     content = models.TextField()
     author = models.ForeignKey('BBS_user')
+    category = models.ForeignKey('Category')    # Fix me
     view_count = models.IntegerField()
     ranking = models.IntegerField(blank = True)
-    created_at = models.DateTimeField()
-    updated_at = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now_add = True)
     
     def __unicode__(self):
         return self.title
@@ -19,6 +20,9 @@ class BBS(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=32, unique = True)
     administrator = models.ForeignKey('BBS_user')
+
+    def __unicode__(self):
+        return self.name
     
 class BBS_user(models.Model):
     user = models.OneToOneField(User)

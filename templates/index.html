@@ -38,7 +38,19 @@
 
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">全部</a></li>
+            <li class="#"><a href="/">全部</a></li>
+
+            {% for category in bbs_category %}
+              <!-- {% print category.id category_id %} -->
+              {% ifequal category.id category_id %}
+                <li class="active"><a href="/category/{{category.id}}">{{category.name}}
+                </a></li>
+              {%else%}
+                <li class=""><a href="/category/{{category.id}}">{{category.name}}
+                </a></li>
+              {%endifequal%}
+            {% endfor %}
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
