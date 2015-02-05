@@ -25,12 +25,45 @@ tinymce.init({
 });
 </script>
 
+<!-- {% for category in bbs_category %}
+  {% ifequal category.id category_id %}
+    <li class="active"><a href="/category/{{category.id}}">{{category.name}}
+    </a></li>
+  {%else%}
+    <li class=""><a href="/category/{{category.id}}">{{category.name}}
+    </a></li>
+  {%endifequal%}
+{% endfor %} -->
+
+<!-- Fix Me -->
 <form method="post" action="/bbs_sub/">
+<ul>
+    <select name="category_select">
+        {% for category in bbs_category %}
+          <!-- <option value={{category.name}}>{{category.name}}</option> -->
+          <option value={{forloop.counter0}}>{{category.name}}</option>
+        {% endfor %}
+    </select>
+
+    <hr>
+
+    标题：<input type="text" name="title" /> </br>
+
+    <hr>
+
+    大意:
+    </br>
+    </br>
+    <input type="text" style="width:100%" name="summary" /> </br>
+
+    <hr>
+
+
     <textarea name="content" style="width:100%"></textarea>
 
     <input type='submit' value='Save'/>
 </form>
 </div>
 
-
+</ul>
 {%endblock%}
